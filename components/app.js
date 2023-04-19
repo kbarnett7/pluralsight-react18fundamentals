@@ -4,7 +4,7 @@ import HouseList from "./houseList";
 const App = () => {
     return (
         <>
-            <Banner><div>Providing houses all over the world.</div></Banner>
+            <Banner><div>Providing houses all over the world!</div></Banner>
             <HouseList/>
         </>
     );

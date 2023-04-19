@@ -1,9 +1,12 @@
 import Banner from "./banner";
 
 const App = () => {
+    const jsx = <div>Hi!</div>;
+
     return (
         <div>
-            <Banner headerText="Providing houses all over the world." />
+            {jsx}
+            <Banner><div>Providing houses all over the world.</div></Banner>
         </div>
     );
 };

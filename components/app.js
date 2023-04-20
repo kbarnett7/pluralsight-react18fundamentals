@@ -1,32 +1,25 @@
-import { useCallback, useState } from "react";
+import React, { useCallback, useState } from "react";
 import Banner from "./banner";
-import HouseList from "./houseList";
-import House from "./house";
+import navValues from "@components/helpers/navValues";
+import ComponentPicker from "./componentPicker";
+
+const navigationContext = React.createContext(navValues.home);
 
 const App = () => {
-    const [selectedHouse, setSelectedHouse] = useState();
-
-    const setSelectedHouseWrapper = (house) => {
-        // do checks on house
-        setSelectedHouse(house)
-    };
-
-    // Callback Hook: if the child components are memoized...
-    // const setHousesWrapper = 
-    //     useCallback((house) => {
-    //         setSelectedHouse(house);
-    //     }, []);
+    const navigate = useCallback(
+        (navTo, param) => setNav({current: navTo, param, navigate}),
+        []
+    );
+    
+    const [nav, setNav] = useState({current: navValues.home, navigate});
 
     return (
-        <>
+        <navigationContext.Provider value={nav}>
             <Banner><div>Providing houses all over the world!</div></Banner>
-            {selectedHouse ? (
-                <House house={selectedHouse} />
-            ) : (
-                <HouseList selectHouse={setSelectedHouseWrapper} />
-            )}
-        </>
+            <ComponentPicker currentNavLocation={nav.current} />
+        </navigationContext.Provider>
     );
 };
 
+export {navigationContext};
 export default App;
